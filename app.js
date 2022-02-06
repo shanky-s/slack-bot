@@ -12,7 +12,7 @@ const messageRouter = require("./routes/messages");
 const authRouter = require("./routes/auth");
 
 const app = express();
-
+app.set("view engine", "pug");
 app.use(cors(corsOptions));
 app.use(logger("dev"));
 app.use(express.json());

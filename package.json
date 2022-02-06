@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "PORT=3050 DEBUG=slack-bot:* node bin/www"
+    "start": "PORT=3050 node ./bin/www",
+    "devstart": "PORT=3050 nodemon ./bin/www",
+    "debugstart": "DEBUG=slack-bot:* npm run devstart"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -11,6 +13,10 @@
     "debug": "~2.6.9",
     "express": "~4.16.1",
     "mongoose": "^6.2.0",
-    "morgan": "~1.9.1"
+    "morgan": "~1.9.1",
+    "pug": "^3.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
   }
 }

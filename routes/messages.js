@@ -2,8 +2,13 @@ const express = require("express");
 const router = express.Router();
 const userResponses = require("../controller/user-responses.controller");
 
-router.get("/", function (req, res, next) {
-  return userResponses.findAll(req, res);
+router.get("/", async function (req, res, next) {
+  const data = await userResponses.findAll(req, res);
+  res.render("index", {
+    title: "User Responses",
+    header: "User Responses",
+    messages: data,
+  });
 });
 router.post("/", function (req, res, next) {
   console.log(req.body);

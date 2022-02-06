@@ -25,13 +25,5 @@ exports.create = (slackResPayloadJSON) => {
     });
 };
 exports.findAll = (req, res) => {
-  UserResponse.find()
-    .then((data) => {
-      res.send(data);
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message: err.message || "Some error occurred while retrieving UserResponse.",
-      });
-    });
+  return UserResponse.find();
 };
