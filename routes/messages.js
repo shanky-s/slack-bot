@@ -16,7 +16,7 @@ router.post("/", function (req, res, next) {
 
   userResponses.create(req.body.payload);
   res.statusCode = 200;
-  if (req.body?.command === "/bot") {
+  if (req.body && req.body.command === "/bot") {
     res.send({
       text: "Welcome. How are you doing?",
       response_type: "in_channel",

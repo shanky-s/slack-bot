@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "PORT=3050 node ./bin/www",
+    "start": "node ./bin/www",
     "devstart": "PORT=3050 nodemon ./bin/www",
     "debugstart": "DEBUG=slack-bot:* npm run devstart"
   },
