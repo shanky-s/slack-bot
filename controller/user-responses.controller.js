@@ -1,12 +1,11 @@
 const db = require("../models");
 const UserResponse = db.userResponses;
 exports.create = (slackResPayloadJSON) => {
-  console.log(slackResPayloadJSON);
-  const slackResPayload = JSON.parse(slackResPayloadJSON);
-  if (!slackResPayload) {
+  if (!slackResPayloadJSON) {
     //res.status(400).send({ message: "Content can not be empty!" });
     return;
   }
+  const slackResPayload = JSON.parse(slackResPayloadJSON);
   const { actions, user } = slackResPayload;
   console.log(actions);
   console.log(user);
