@@ -5,6 +5,7 @@ module.exports = (mongoose) => {
       {
         responseText: String,
         slackUserId: String,
+        responseType: String,
       },
       { timestamps: true }
     )
