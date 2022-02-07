@@ -101,6 +101,7 @@ router.post("/", function (req, res, next) {
       ],
     });
   }
+  res.send();
 });
 
 module.exports = router;
