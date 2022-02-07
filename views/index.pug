@@ -4,7 +4,11 @@ html
     link(rel='stylesheet', href='/stylesheets/style.css', type='text/css')
   body
     
-    h1= header 
+    h3= moodsHeader 
     ul
-        each val in messages
-            li= `${val.slackUserId} feels ${val.responseText}`
+        each val in moodsResponses
+            li= `${val.slackUserId} is feeling ${val.responseText}`
+    h3= hobbiesHeader 
+    ul
+        each val in hobbiesResponses
+            li= `${val.slackUserId} likes to ${val.responseText}`        

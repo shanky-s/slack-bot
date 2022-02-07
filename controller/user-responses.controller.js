@@ -11,6 +11,9 @@ exports.create = (slackResPayload) => {
   });
   return userRes.save(userRes);
 };
-exports.findAll = (req, res) => {
-  return UserResponse.find();
+exports.findByType = (type) => {
+  return UserResponse.find({ responseType: type });
+};
+exports.deleteAll = () => {
+  return UserResponse.remove();
 };

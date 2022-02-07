@@ -3,12 +3,25 @@ const router = express.Router();
 const userResponses = require("../controller/user-responses.controller");
 
 router.get("/", async function (req, res, next) {
-  const data = await userResponses.findAll(req, res);
+  const moodsResponses = await userResponses.findByType("mood_selection");
+  const hobbiesResponses = await userResponses.findByType("hobby_selection");
   res.render("index", {
     title: "User Responses",
-    header: "User Responses",
-    messages: data,
+    moodsHeader: "How are you doing?",
+    hobbiesHeader: "What are your favorite hobbies?",
+    moodsResponses,
+    hobbiesResponses,
   });
+});
+router.delete("/", async function (req, res, next) {
+  if (req.body.key === "29f7ea08-8a13-4cab-be19-2c25a6389a56") {
+    const deleteResponse = await userResponses.deleteAll();
+    res.statusCode = 200;
+    res.send(deleteResponse);
+  } else {
+    res.statusCode = 401;
+    res.send("Unauthorized");
+  }
 });
 
 router.post("/", async function (req, res, next) {
