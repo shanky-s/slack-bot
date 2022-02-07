@@ -11,7 +11,7 @@ router.get("/", async function (req, res, next) {
   });
 });
 
-router.post("/", function (req, res, next) {
+router.post("/", async function (req, res, next) {
   console.log(req.body);
 
   res.statusCode = 200;
@@ -51,14 +51,19 @@ router.post("/", function (req, res, next) {
   }
 
   const { payload } = req.body;
-  console.log(payload);
-  if (payload) {
-    userResponses.create(payload);
-  } else {
+  if (!payload) {
     res.statusCode = 400;
     res.send();
   }
-  const { callback_id } = payload;
+  console.log(payload);
+
+  const slackResPayload = JSON.parse(payload);
+  const savedResponse = await userResponses.create(slackResPayload);
+  console.log("saved data");
+  console.log(savedResponse);
+
+  const { callback_id } = slackResPayload;
+  console.log(callback_id);
   if (callback_id === "mood_selection") {
     res.send({
       text: "What are your favorite hobbies?",
@@ -101,7 +106,9 @@ router.post("/", function (req, res, next) {
       ],
     });
   }
-  res.send();
+  if (callback_id === "hobby_selection") {
+    res.send("Thank You.");
+  }
 });
 
 module.exports = router;
